@@ -41,8 +41,8 @@ class PCToolkit(QMainWindow):
         super().__init__()
         self.setWindowTitle("PC Toolkit Pro - Advanced System Manager")
         self.setGeometry(100, 100, 650, 480)
-        self.setMinimumSize(600, 450)
-        self.setMaximumSize(700, 550)
+        self.setMinimumSize(600, 550)
+        self.setMaximumSize(800, 800)
         self.setWindowIcon(QIcon(resource_path("icon.ico")))
 
         self.system_cleaner = SystemCleaner(self.log_message, self.update_status)
@@ -107,7 +107,7 @@ class PCToolkit(QMainWindow):
 
         # Add clickable copyright notice at the bottom
         copyright_label = QLabel(
-            "© 2025 | Developed by Sujit | <a href='https://github.com/SSujitX' style='color: #4a9eff; text-decoration: none;'>github.com/SSujitX</a>"
+            "Developed by SSujitX | <a href='https://github.com/SSujitX' style='color: #4a9eff; text-decoration: none;'>github.com/SSujitX</a> | © 2025"
         )
         copyright_label.setStyleSheet(
             """
