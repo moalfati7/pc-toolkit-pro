@@ -1,15 +1,6 @@
-# 🚀 PC Toolkit Pro v2.3 - Feature Update
+# 🚀 PC Toolkit Pro v2.4 - Bug Fix
 
-**Release Date:** Aug 4, 2025 | **Version:** 2.3
-
----
-
-## ✨ New Features
-
-### 📈 **Advanced GPU Monitoring**
-
-- **Real-time GPU Usage** - Live tracking of GPU utilization, memory usage, and temperature for NVIDIA GPUs.
-- **Dynamic UI** - GPU monitoring elements are only displayed if a compatible GPU is detected.
+**Release Date:** Aug 5, 2025 | **Version:** 2.4
 
 ---
 
@@ -17,4 +8,4 @@
 
 ### 🔧 **Critical Fixes**
 
-- **Power Management Timer** - Fixed a bug where selecting "Minutes" for scheduled shutdown was incorrectly interpreted as "Hours".
+- **GPU Monitoring**: Fixed an issue where a command prompt window would briefly appear when fetching GPU information.
