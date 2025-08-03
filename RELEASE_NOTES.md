@@ -1,4 +1,4 @@
-# PC Toolkit Pro v2.1 Release Notes
+# PC Toolkit Pro v2.2 Release Notes
 
 ## New Features
 
