@@ -39,11 +39,11 @@ class PCToolkit(QMainWindow):
 
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("PC Tool - Advanced System Manager")
+        self.setWindowTitle("PC Toolkit Pro - Advanced System Manager")
         self.setGeometry(100, 100, 650, 480)
         self.setMinimumSize(600, 450)
         self.setMaximumSize(700, 550)
-        self.setWindowIcon(QIcon("icon.ico"))
+        self.setWindowIcon(QIcon(resource_path("icon.ico")))
 
         self.system_cleaner = SystemCleaner(self.log_message, self.update_status)
         self.power_manager = PowerManager(self)
@@ -378,7 +378,7 @@ class PCToolkit(QMainWindow):
             hours = 0
             minutes = 0
             seconds = 0
-            
+
             # Handle format like "1 day, 5:36:57" or "2 days, 5:36:57"
             if "day" in uptime_str:
                 day_part, time_part = uptime_str.split(", ")
@@ -390,42 +390,42 @@ class PCToolkit(QMainWindow):
             else:
                 # Handle format like "5:36:57" (no days)
                 time_str = uptime_str
-            
+
             # Parse the time part (hours:minutes:seconds)
             time_parts = time_str.split(":")
             if len(time_parts) == 3:
                 hours, minutes, seconds = map(int, time_parts)
-            
+
             # Build the result string
             result_parts = []
-            
+
             if days > 0:
                 if days == 1:
                     result_parts.append(f"{days} day")
                 else:
                     result_parts.append(f"{days} days")
-            
+
             if hours > 0:
                 if hours == 1:
                     result_parts.append(f"{hours} hour")
                 else:
                     result_parts.append(f"{hours} hours")
-            
+
             if minutes > 0:
                 if minutes == 1:
                     result_parts.append(f"{minutes} min")
                 else:
                     result_parts.append(f"{minutes} mins")
-            
+
             if seconds > 0:
                 if seconds == 1:
                     result_parts.append(f"{seconds} sec")
                 else:
                     result_parts.append(f"{seconds} secs")
-            
+
             if not result_parts:
                 return "Just started"
-            
+
             return " ".join(result_parts)
         except Exception as e:
             return uptime_str
