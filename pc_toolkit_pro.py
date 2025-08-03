@@ -18,8 +18,8 @@ from PyQt6.QtWidgets import (
     QMessageBox,
     QFrame,
 )
-from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QIcon, QFont
+from PyQt6.QtCore import Qt, QUrl
+from PyQt6.QtGui import QIcon, QFont, QDesktopServices, QCursor
 
 from modules.system_monitor import SystemInfoThread, SystemMonitor
 from modules.system_cleaner import SystemCleaner
@@ -104,6 +104,29 @@ class PCToolkit(QMainWindow):
         self.create_power_tab()
 
         layout.addWidget(self.tabs)
+
+        # Add clickable copyright notice at the bottom
+        copyright_label = QLabel(
+            "© 2025 | Developed by Sujit | <a href='https://github.com/SSujitX' style='color: #4a9eff; text-decoration: none;'>github.com/SSujitX</a>"
+        )
+        copyright_label.setStyleSheet(
+            """
+            QLabel {
+                font-family: 'Segoe UI', Arial, sans-serif;
+                font-size: 9px;
+                color: #666666;
+                background-color: transparent;
+                border: none;
+                padding: 8px;
+                margin: 2px;
+            }
+        """
+        )
+        copyright_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        copyright_label.setOpenExternalLinks(True)
+        copyright_label.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        layout.addWidget(copyright_label)
+
         layout.setContentsMargins(8, 8, 8, 8)
         layout.setSpacing(8)
 
