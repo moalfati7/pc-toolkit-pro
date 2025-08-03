@@ -1,35 +1,26 @@
-# 🚀 PC Toolkit Pro v2.1 - Release Notes
+# 🚀 PC Toolkit Pro v2.1
 
-**Release Date:** Aug 3, 2025  
-**Version:** 2.1
+**Release Date:** Aug 3, 2025 | **Version:** 2.1
 
----
+## ✨ What's New
 
-## ✨ New Features
+- **🎨 Theme Toggle** - Switch between light/dark themes
+- **📈 GPU Monitoring** - Real-time GPU usage and temperature tracking
+- **🗂️ Registry Cleaner** - Safe registry optimization with backups
+- **🔄 Auto-Updates** - Automatic updates with rollback support
+- **📱 Notifications** - Toast notifications for operations
+- **🔍 Duplicate Finder** - Smart duplicate file detection
 
-- **🎨 Light/Dark Theme Toggle** - Switch between themes with one click
-- **📈 Enhanced System Metrics** - GPU usage monitoring and temperature sensors
-- **🗂️ Registry Cleaner** - Safe registry optimization with backup creation
-- **🔄 Auto-Update System** - Automatic updates with rollback capability
-- **📱 System Notifications** - Toast notifications for completed operations
-- **⚙️ Advanced Settings Panel** - Customizable cleanup rules and preferences
-- **📊 Performance Benchmarking** - Built-in system performance testing
-- **🛡️ System Health Check** - Comprehensive system diagnostics
-- **💾 Backup Manager** - Create and restore system restore points
-- **🔍 Duplicate File Finder** - Intelligent duplicate detection and removal
+## 🚀 Improvements
 
-## 🔧 Improvements
+- **40% faster** file scanning and cleanup operations
+- **25% less** memory usage during system monitoring
+- **Enhanced security** with improved UAC handling
+- **Multi-language** support for 12 additional languages
+- **Better UI scaling** on high-DPI displays
 
-- **⚡ 40% Faster Scanning** - Optimized file system operations
-- **🎯 Better Memory Usage** - Reduced RAM consumption by 25%
-- **🔒 Enhanced Security** - Improved UAC handling and permission checks
-- **🌐 Multi-language Support** - Added support for 12 additional languages
-- **📱 Responsive UI** - Better scaling on high-DPI displays
+## 🐛 Key Fixes
 
-## 🐛 Bug Fixes
-
-- Fixed application icon not showing in PyInstaller builds
-- Resolved memory leaks in system monitoring threads
-- Fixed crash when cleaning temporary files on some systems
-- Improved error handling for network operations
-- Fixed UI freezing during large file operations
+- Fixed PyInstaller icon display issue
+- Resolved memory leaks in monitoring threads
+- Improved error handling and UI responsiveness
