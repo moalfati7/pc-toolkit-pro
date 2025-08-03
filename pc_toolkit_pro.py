@@ -41,7 +41,7 @@ class PCToolkit(QMainWindow):
         super().__init__()
         self.setWindowTitle("PC Toolkit Pro - Advanced System Manager")
         self.setGeometry(100, 100, 650, 480)
-        self.setMinimumSize(600, 550)
+        self.setMinimumSize(600, 600)
         self.setMaximumSize(800, 800)
         self.setWindowIcon(QIcon(resource_path("icon.ico")))
 
@@ -172,51 +172,48 @@ class PCToolkit(QMainWindow):
 
         actions_group = QGroupBox("⚡ Quick Actions")
         actions_layout = QGridLayout()
+        actions_layout.setSpacing(5)
 
-        task_mgr_btn = QPushButton("📊 Task Manager")
-        task_mgr_btn.setStyleSheet(ModernDarkTheme.get_button_style("default"))
-        task_mgr_btn.clicked.connect(self.quick_actions.open_task_manager)
-        actions_layout.addWidget(task_mgr_btn, 0, 0)
+        buttons = [
+            ("📊 Task Manager", self.quick_actions.open_task_manager),
+            ("🔧 Device Manager", self.quick_actions.open_device_manager),
+            ("⚙️ Control Panel", self.quick_actions.open_control_panel),
+            
+            ("💾 Disk Management", self.quick_actions.open_disk_management),
+            ("💻 CMD (Admin)", self.quick_actions.open_command_prompt),
+            ("🔷 PowerShell (Admin)", self.quick_actions.open_powershell),
+            
+            ("📋 System Info", self.quick_actions.open_system_info),
+            ("📝 Registry Editor", self.quick_actions.open_registry_editor),
+            ("📊 Event Viewer", self.quick_actions.open_event_viewer),
+            
+            ("🔧 Services", self.quick_actions.open_services),
+            ("📁 File Explorer", self.quick_actions.open_file_explorer),
+            ("🌐 Network Connections", self.quick_actions.open_network_connections),
 
-        device_mgr_btn = QPushButton("🔧 Device Manager")
-        device_mgr_btn.setStyleSheet(ModernDarkTheme.get_button_style("default"))
-        device_mgr_btn.clicked.connect(self.quick_actions.open_device_manager)
-        actions_layout.addWidget(device_mgr_btn, 0, 1)
-
-        control_panel_btn = QPushButton("⚙️ Control Panel")
-        control_panel_btn.setStyleSheet(ModernDarkTheme.get_button_style("default"))
-        control_panel_btn.clicked.connect(self.quick_actions.open_control_panel)
-        actions_layout.addWidget(control_panel_btn, 0, 2)
-
-        system_info_btn = QPushButton("📋 System Info")
-        system_info_btn.setStyleSheet(ModernDarkTheme.get_button_style("default"))
-        system_info_btn.clicked.connect(self.quick_actions.open_system_info)
-        actions_layout.addWidget(system_info_btn, 1, 0)
-
-        disk_mgmt_btn = QPushButton("💾 Disk Management")
-        disk_mgmt_btn.setStyleSheet(ModernDarkTheme.get_button_style("default"))
-        disk_mgmt_btn.clicked.connect(self.quick_actions.open_disk_management)
-        actions_layout.addWidget(disk_mgmt_btn, 1, 1)
-
-        services_btn = QPushButton("🔧 Services")
-        services_btn.setStyleSheet(ModernDarkTheme.get_button_style("default"))
-        services_btn.clicked.connect(self.quick_actions.open_services)
-        actions_layout.addWidget(services_btn, 1, 2)
-
-        registry_btn = QPushButton("📝 Registry Editor")
-        registry_btn.setStyleSheet(ModernDarkTheme.get_button_style("default"))
-        registry_btn.clicked.connect(self.quick_actions.open_registry_editor)
-        actions_layout.addWidget(registry_btn, 2, 0)
-
-        event_viewer_btn = QPushButton("📊 Event Viewer")
-        event_viewer_btn.setStyleSheet(ModernDarkTheme.get_button_style("default"))
-        event_viewer_btn.clicked.connect(self.quick_actions.open_event_viewer)
-        actions_layout.addWidget(event_viewer_btn, 2, 1)
-
-        cmd_btn = QPushButton("💻 Command Prompt")
-        cmd_btn.setStyleSheet(ModernDarkTheme.get_button_style("default"))
-        cmd_btn.clicked.connect(self.quick_actions.open_command_prompt)
-        actions_layout.addWidget(cmd_btn, 2, 2)
+            ("✂️ Snipping Tool", self.quick_actions.open_snipping_tool),
+            ("📄 Notepad", self.quick_actions.open_notepad),
+            ("🔊 Volume Mixer", self.quick_actions.open_volume_mixer)
+        ]
+        
+        for i, (text, action) in enumerate(buttons):
+            btn = QPushButton(text)
+            btn.setStyleSheet(ModernDarkTheme.get_button_style("default") + """
+                QPushButton {
+                    font-size: 12px;
+                    font-weight: 500;
+                    padding: 6px 12px;
+                    text-align: center;
+                }
+            """)
+            btn.setMaximumHeight(50)
+            btn.setMinimumHeight(50)
+            btn.setMinimumWidth(140)
+            if action:
+                btn.clicked.connect(action)
+            row = i // 3
+            col = i % 3
+            actions_layout.addWidget(btn, row, col)
 
         actions_group.setLayout(actions_layout)
         layout.addWidget(actions_group)
