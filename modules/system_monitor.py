@@ -23,7 +23,7 @@ class SystemInfoThread(QThread):
         try:
             result = subprocess.run(
                 ['nvidia-smi', '--query-gpu=utilization.gpu', '--format=csv,noheader,nounits'],
-                capture_output=True, text=True, timeout=5
+                capture_output=True, text=True, timeout=5, creationflags=subprocess.CREATE_NO_WINDOW
             )
             return result.returncode == 0
         except (subprocess.TimeoutExpired, FileNotFoundError):
@@ -39,7 +39,7 @@ class SystemInfoThread(QThread):
             result = subprocess.run(
                 ['nvidia-smi', '--query-gpu=utilization.gpu,memory.used,memory.total,temperature.gpu',
                  '--format=csv,noheader,nounits'],
-                capture_output=True, text=True, timeout=5
+                capture_output=True, text=True, timeout=5, creationflags=subprocess.CREATE_NO_WINDOW
             )
             
             if result.returncode == 0 and result.stdout.strip():
