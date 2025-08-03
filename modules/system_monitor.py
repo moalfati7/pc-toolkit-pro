@@ -3,6 +3,8 @@
 import psutil
 import platform
 import datetime
+import subprocess
+import json
 from PyQt6.QtCore import QThread, pyqtSignal
 
 
@@ -14,6 +16,45 @@ class SystemInfoThread(QThread):
     def __init__(self):
         super().__init__()
         self.running = True
+        self.gpu_available = self._check_gpu_availability()
+    
+    def _check_gpu_availability(self):
+        """Check if GPU monitoring is available."""
+        try:
+            result = subprocess.run(
+                ['nvidia-smi', '--query-gpu=utilization.gpu', '--format=csv,noheader,nounits'],
+                capture_output=True, text=True, timeout=5
+            )
+            return result.returncode == 0
+        except (subprocess.TimeoutExpired, FileNotFoundError):
+            return False
+    
+    def _get_gpu_info(self):
+        """Get GPU utilization information."""
+        if not self.gpu_available:
+            return None
+        
+        try:
+            # Get GPU utilization
+            result = subprocess.run(
+                ['nvidia-smi', '--query-gpu=utilization.gpu,memory.used,memory.total,temperature.gpu',
+                 '--format=csv,noheader,nounits'],
+                capture_output=True, text=True, timeout=5
+            )
+            
+            if result.returncode == 0 and result.stdout.strip():
+                gpu_data = result.stdout.strip().split(', ')
+                if len(gpu_data) >= 4:
+                    return {
+                        'utilization': float(gpu_data[0]),
+                        'memory_used': float(gpu_data[1]),
+                        'memory_total': float(gpu_data[2]),
+                        'temperature': float(gpu_data[3])
+                    }
+        except (subprocess.TimeoutExpired, ValueError, IndexError):
+            pass
+        
+        return None
     
     def run(self):
         """Main thread loop for system monitoring."""
@@ -35,6 +76,17 @@ class SystemInfoThread(QThread):
                     'disk_total': disk.total,
                     'uptime': str(uptime).split('.')[0]
                 }
+                
+                # Add GPU information if available
+                gpu_info = self._get_gpu_info()
+                if gpu_info:
+                    info['gpu_available'] = True
+                    info['gpu_utilization'] = gpu_info['utilization']
+                    info['gpu_memory_used'] = gpu_info['memory_used']
+                    info['gpu_memory_total'] = gpu_info['memory_total']
+                    info['gpu_temperature'] = gpu_info['temperature']
+                else:
+                    info['gpu_available'] = False
                 
                 self.info_updated.emit(info)
                 
