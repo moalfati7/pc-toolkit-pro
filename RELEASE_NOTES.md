@@ -1,24 +1,13 @@
-# PC Toolkit Pro v2.2 Release Notes
+# 🚀 PC Toolkit Pro v2.3
 
-## New Features
+**Release Date:** Aug 4, 2025 | **Version:** 2.3
 
-- Theme Toggle (Light/Dark)
-- GPU Monitoring
-- Registry Cleaner
-- Auto-Updates
-- Notifications
-- Duplicate Finder
+---
 
-## Improvements
+## 🐛 Bug Fixes
 
-- 40% faster scanning
-- 25% less memory usage
-- Enhanced security
-- Multi-language support
-- Better UI scaling
+### 🔧 **Power Management**
 
-## Bug Fixes
+- **Scheduled Shutdown Timer**: Fixed a critical bug where selecting "Minutes" in the scheduled shutdown timer would incorrectly be treated as "Hours". The timer now correctly interprets the selected time unit.
 
-- Fixed PyInstaller icon issue
-- Resolved memory leaks
-- Improved error handling
+---
