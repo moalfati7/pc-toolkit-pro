@@ -44,6 +44,26 @@ _Clean • Monitor • Optimize • Control_
 
 ---
 
+## 📸 Screenshots
+
+<div align="center">
+
+### 🖥️ System Monitor
+![System Monitor](images/screenshot1.png)
+*Real-time system monitoring with CPU, memory, and disk usage tracking*
+
+### 🧹 System Cleaner
+![System Cleaner](images/screenshot2.png)
+*Advanced cleaning tools with progress tracking and detailed logs*
+
+### ⚡ Power Management
+![Power Management](images/screenshot3.png)
+*Complete power control suite with scheduling and safety confirmations*
+
+</div>
+
+---
+
 ## ✨ Features
 
 ### 🧹 **Advanced System Cleaner**
