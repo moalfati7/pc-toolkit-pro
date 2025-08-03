@@ -13,6 +13,7 @@
 _Clean • Monitor • Optimize • Control_
 
 [![Download v2.0](https://img.shields.io/badge/Download-v2.0-success?style=for-the-badge&logo=download)](https://github.com/SSujitX/pc-toolkit-pro/releases/tag/2.0)
+
 [🚀 Quick Start](#-quick-start) • [📖 Documentation](#-features)
 
 </div>
