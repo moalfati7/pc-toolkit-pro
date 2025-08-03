@@ -99,3 +99,45 @@ class QuickActions:
             subprocess.Popen("ncpa.cpl", shell=True)
         except Exception as e:
             self.show_error("Error", f"Failed to open Network Connections: {e}")
+    
+    def open_volume_mixer(self):
+        """Open Windows Volume Mixer."""
+        try:
+            subprocess.Popen("sndvol", shell=True)
+        except Exception as e:
+            self.show_error("Error", f"Failed to open Volume Mixer: {e}")
+    
+    def open_calculator(self):
+        """Open Windows Calculator."""
+        try:
+            subprocess.Popen("calc", shell=True)
+        except Exception as e:
+            self.show_error("Error", f"Failed to open Calculator: {e}")
+    
+    def open_notepad(self):
+        """Open Windows Notepad."""
+        try:
+            subprocess.Popen("notepad", shell=True)
+        except Exception as e:
+            self.show_error("Error", f"Failed to open Notepad: {e}")
+    
+    def open_paint(self):
+        """Open Windows Paint."""
+        try:
+            subprocess.Popen("mspaint", shell=True)
+        except Exception as e:
+            self.show_error("Error", f"Failed to open Paint: {e}")
+    
+    def open_snipping_tool(self):
+        """Open Windows Snipping Tool."""
+        try:
+            subprocess.Popen("snippingtool", shell=True)
+        except Exception as e:
+            self.show_error("Error", f"Failed to open Snipping Tool: {e}")
+    
+    def open_character_map(self):
+        """Open Windows Character Map."""
+        try:
+            subprocess.Popen("charmap", shell=True)
+        except Exception as e:
+            self.show_error("Error", f"Failed to open Character Map: {e}")
