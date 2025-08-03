@@ -141,6 +141,7 @@ class PCToolkit(QMainWindow):
         self.cpu_label = QLabel("CPU: Loading...")
         self.memory_label = QLabel("Memory: Loading...")
         self.disk_label = QLabel("Disk C: Loading...")
+        self.gpu_label = QLabel("GPU: Checking...")
 
         system_info = SystemMonitor.get_system_info()
         self.os_label = QLabel(f"OS: {system_info['os']}")
@@ -148,7 +149,8 @@ class PCToolkit(QMainWindow):
         info_layout.addWidget(self.cpu_label, 0, 0)
         info_layout.addWidget(self.memory_label, 1, 0)
         info_layout.addWidget(self.disk_label, 2, 0)
-        info_layout.addWidget(self.os_label, 3, 0)
+        info_layout.addWidget(self.gpu_label, 3, 0)
+        info_layout.addWidget(self.os_label, 4, 0)
 
         self.cpu_progress = QProgressBar()
         self.cpu_progress.setStyleSheet(ModernDarkTheme.get_progress_bar_style())
@@ -156,10 +158,14 @@ class PCToolkit(QMainWindow):
         self.memory_progress.setStyleSheet(ModernDarkTheme.get_progress_bar_style())
         self.disk_progress = QProgressBar()
         self.disk_progress.setStyleSheet(ModernDarkTheme.get_progress_bar_style())
+        self.gpu_progress = QProgressBar()
+        self.gpu_progress.setStyleSheet(ModernDarkTheme.get_progress_bar_style())
+        self.gpu_progress.setVisible(False)  # Initially hidden until GPU is detected
 
         info_layout.addWidget(self.cpu_progress, 0, 1)
         info_layout.addWidget(self.memory_progress, 1, 1)
         info_layout.addWidget(self.disk_progress, 2, 1)
+        info_layout.addWidget(self.gpu_progress, 3, 1)
 
         info_group.setLayout(info_layout)
         layout.addWidget(info_group)
@@ -362,7 +368,7 @@ class PCToolkit(QMainWindow):
     def schedule_shutdown(self):
         """Schedule a shutdown with the selected time and unit."""
         time_value = self.timer_spinbox.value()
-        time_unit = self.time_unit_combo.currentText().lower()
+        time_unit = self.time_unit_combo.currentText()
         self.power_manager.schedule_shutdown(time_value, time_unit)
 
     def update_system_info(self, info):
@@ -387,6 +393,24 @@ class PCToolkit(QMainWindow):
                 f"Disk C: {disk_used_gb:.1f}GB/{disk_total_gb:.1f}GB ({disk_percent:.1f}%)"
             )
             self.disk_progress.setValue(int(disk_percent))
+
+            # Handle GPU information
+            if info.get("gpu_available", False):
+                gpu_utilization = info["gpu_utilization"]
+                gpu_memory_used_gb = info["gpu_memory_used"] / 1024  # Convert MB to GB
+                gpu_memory_total_gb = info["gpu_memory_total"] / 1024  # Convert MB to GB
+                gpu_temp = info["gpu_temperature"]
+                
+                self.gpu_label.setText(
+                    f"GPU: {gpu_utilization:.1f}% | {gpu_memory_used_gb:.1f}GB/{gpu_memory_total_gb:.1f}GB | {gpu_temp:.0f}°C"
+                )
+                self.gpu_progress.setValue(int(gpu_utilization))
+                self.gpu_label.setVisible(True)
+                self.gpu_progress.setVisible(True)
+            else:
+                self.gpu_label.setText("GPU: Not Available")
+                self.gpu_label.setVisible(True)
+                self.gpu_progress.setVisible(False)
 
             uptime_str = info["uptime"]
             self.uptime_display.setText(self.format_uptime(uptime_str))
