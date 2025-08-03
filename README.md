@@ -12,7 +12,8 @@
 
 _Clean • Monitor • Optimize • Control_
 
-[📥 Download](#-installation) • [🚀 Quick Start](#-quick-start) • [📖 Documentation](#-features)
+[![Download v2.0](https://img.shields.io/badge/Download-v2.0-success?style=for-the-badge&logo=download)](https://github.com/SSujitX/pc-toolkit-pro/releases/tag/2.0)
+[🚀 Quick Start](#-quick-start) • [📖 Documentation](#-features)
 
 </div>
 
@@ -131,9 +132,9 @@ python pc_toolkit_pro.py
 
 #### **Method 3: Direct Download**
 
-1. Download the latest release from [Releases](https://github.com/yourusername/pc-toolkit-pro/releases)
+1. Download the latest release from [v2.0 Release](https://github.com/SSujitX/pc-toolkit-pro/releases/tag/2.0)
 2. Extract the ZIP file
-3. Run `pc_toolkit_pro.exe` (no installation required)
+3. Run `PC-Toolkit-Pro.exe` (no installation required)
 
 ---
 
