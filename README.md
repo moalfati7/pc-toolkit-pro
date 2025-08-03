@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![PC Toolkit Pro](https://img.shields.io/badge/PC%20Toolkit%20Pro-v2.1-blue?style=for-the-badge&logo=windows)
+![PC Toolkit Pro](https://img.shields.io/badge/PC%20Toolkit%20Pro-v2.2-blue?style=for-the-badge&logo=windows)
 ![Python](https://img.shields.io/badge/Python-3.11+-green?style=for-the-badge&logo=python)
 ![PyQt6](https://img.shields.io/badge/PyQt6-GUI-orange?style=for-the-badge&logo=qt)
 ![License](https://img.shields.io/badge/License-MIT-red?style=for-the-badge)
@@ -49,16 +49,19 @@ _Clean • Monitor • Optimize • Control_
 <div align="center">
 
 ### 🖥️ System Monitor
+
 ![System Monitor](images/screenshot1.png)
-*Real-time system monitoring with CPU, memory, and disk usage tracking*
+_Real-time system monitoring with CPU, memory, and disk usage tracking_
 
 ### 🧹 System Cleaner
+
 ![System Cleaner](images/screenshot2.png)
-*Advanced cleaning tools with progress tracking and detailed logs*
+_Advanced cleaning tools with progress tracking and detailed logs_
 
 ### ⚡ Power Management
+
 ![Power Management](images/screenshot3.png)
-*Complete power control suite with scheduling and safety confirmations*
+_Complete power control suite with scheduling and safety confirmations_
 
 </div>
 
