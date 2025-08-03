@@ -51,16 +51,19 @@ _Clean • Monitor • Optimize • Control_
 ### 🖥️ System Monitor
 
 ![System Monitor](images/screenshot1.png)
+
 _Real-time system monitoring with CPU, memory, and disk usage tracking_
 
 ### 🧹 System Cleaner
 
 ![System Cleaner](images/screenshot2.png)
+
 _Advanced cleaning tools with progress tracking and detailed logs_
 
 ### ⚡ Power Management
 
 ![Power Management](images/screenshot3.png)
+
 _Complete power control suite with scheduling and safety confirmations_
 
 </div>
