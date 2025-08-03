@@ -12,7 +12,7 @@
 
 _Clean • Monitor • Optimize • Control_
 
-[📥 Download](#-installation) • [🚀 Quick Start](#-quick-start) • [📖 Documentation](#-features) • [🛠️ Build](#-building-executable)
+[📥 Download](#-installation) • [🚀 Quick Start](#-quick-start) • [📖 Documentation](#-features)
 
 </div>
 
