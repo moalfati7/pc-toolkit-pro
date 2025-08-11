@@ -1,13 +1,11 @@
-# 🚀 PC Toolkit Pro v2.5 - Performance & Features Update
+# 🚀 PC Toolkit Pro v2.6 - Bug Fixes & Improvements
 
-**Version:** 2.5
+**Version:** 2.6
 
 ---
 
-## ✨ Major Enhancements
+## 🐛 Bug Fixes
 
-- **🚀 Asynchronous Loading**: Background system information loading for faster startup and responsive UI
-- **📊 System Information Tab**: Comprehensive hardware specs with real-time CPU, memory, disk, and GPU monitoring
-- **🧹 Enhanced Cleaner**: Improved temp directory cleaning with detailed progress tracking and smart detection
-- **🔔 Smart System Tray**: Background monitoring with live metrics display and quick access menu
-- **⚡ Better Performance**: Non-blocking UI with instant startup and smooth user experience
+- **⚙️ Settings Button**: Fixed Windows Settings not opening from quick actions menu with improved fallback methods
+
+---

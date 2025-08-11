@@ -896,7 +896,7 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
 
     app.setApplicationName("PC Toolkit Pro")
-    app.setApplicationVersion("2.5")
+    app.setApplicationVersion("2.6")
     app.setOrganizationName("PC Toolkit Suite")
 
     app.setQuitOnLastWindowClosed(False)

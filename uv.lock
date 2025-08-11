@@ -43,7 +43,7 @@ wheels = [
 
 [[package]]
 name = "pc-toolkit-pro"
-version = "2.4"
+version = "2.5"
 source = { virtual = "." }
 dependencies = [
     { name = "humanize" },

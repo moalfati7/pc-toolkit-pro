@@ -63,25 +63,63 @@ jobs:
           echo "Renamed to: PC Toolkit Pro v$version.exe"
         shell: pwsh
 
+      - name: Extract release notes
+        id: get_release_notes
+        run: |
+          $version = "${{ steps.get_version.outputs.version }}"
+          $releaseNotesPath = "RELEASE_NOTES.md"
+          
+          if (Test-Path $releaseNotesPath) {
+            $content = Get-Content $releaseNotesPath -Raw
+            
+            # Extract the latest version section (from start until next version or end)
+            $pattern = "# 🚀 PC Toolkit Pro v$version.*?(?=# 🚀 PC Toolkit Pro v[\d\.]+|$)"
+            $match = [regex]::Match($content, $pattern, [System.Text.RegularExpressions.RegexOptions]::Singleline)
+            
+            if ($match.Success) {
+              $releaseNotes = $match.Value.Trim()
+              # Remove the main title as it will be in the release title
+              $releaseNotes = $releaseNotes -replace "^# 🚀 PC Toolkit Pro v$version[^\r\n]*[\r\n]*", ""
+              # Clean up extra whitespace
+              $releaseNotes = $releaseNotes.Trim()
+              
+              # Escape special characters for GitHub Actions
+              $releaseNotes = $releaseNotes -replace '%', '%25'
+              $releaseNotes = $releaseNotes -replace '\r', '%0D'
+              $releaseNotes = $releaseNotes -replace '\n', '%0A'
+              
+              echo "release_notes=$releaseNotes" >> $env:GITHUB_OUTPUT
+              echo "Successfully extracted release notes for version $version"
+            } else {
+              echo "release_notes=## What's New%0A- Latest version of PC Toolkit Pro%0A- Enhanced system monitoring and management features%0A- Improved user interface and performance" >> $env:GITHUB_OUTPUT
+              echo "Could not find specific version notes, using default"
+            }
+          } else {
+            echo "release_notes=## What's New%0A- Latest version of PC Toolkit Pro%0A- Enhanced system monitoring and management features%0A- Improved user interface and performance" >> $env:GITHUB_OUTPUT
+            echo "RELEASE_NOTES.md not found, using default"
+          }
+        shell: pwsh
+
       - name: Create or Update Release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ github.ref_name }}
           name: PC Toolkit Pro ${{ github.ref_name }}
           body: |
-            ## PC Toolkit Pro ${{ github.ref_name }}
+            ${{ steps.get_release_notes.outputs.release_notes }}
 
-            ### What's New
-            - Latest version of PC Toolkit Pro
-            - Enhanced system monitoring and management features
-            - Improved user interface and performance
-
-            ### Download
+            ### 📥 Download
             Download the executable file below to get started.
 
-            ### System Requirements
-            - Windows 10/11
+            ### 💻 System Requirements
+            - Windows 10/11 (64-bit recommended)
             - No additional dependencies required
+            - Administrator rights recommended for full functionality
+
+            ### 🚀 Installation
+            1. Download the executable file
+            2. Run as administrator for best experience
+            3. No installation required - portable application
 
             ---
 
