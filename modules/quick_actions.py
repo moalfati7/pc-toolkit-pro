@@ -75,15 +75,21 @@ class QuickActions:
     def open_command_prompt(self):
         """Open Command Prompt as Administrator."""
         try:
-            subprocess.Popen("powershell Start-Process cmd -Verb RunAs", shell=True)
+            # Open admin cmd in System32 directory
+            subprocess.Popen(
+                'powershell Start-Process cmd -Verb RunAs -WorkingDirectory "C:\\Windows\\System32"',
+                shell=True
+            )
         except Exception as e:
             self.show_error("Error", f"Failed to open Command Prompt: {e}")
 
     def open_powershell(self):
         """Open PowerShell as Administrator."""
         try:
+            # Open admin PowerShell in System32 directory
             subprocess.Popen(
-                "powershell Start-Process powershell -Verb RunAs", shell=True
+                'powershell Start-Process powershell -Verb RunAs -WorkingDirectory "C:\\Windows\\System32"',
+                shell=True
             )
         except Exception as e:
             self.show_error("Error", f"Failed to open PowerShell: {e}")

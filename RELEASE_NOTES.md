@@ -1,11 +1,9 @@
-# 🚀 PC Toolkit Pro v2.6 - Bug Fixes & Improvements
+# 🚀 PC Toolkit Pro v2.7 - Bug Fixes & Improvements
 
-**Version:** 2.6
+**Version:** 2.7
 
 ---
 
 ## 🐛 Bug Fixes
 
-- **⚙️ Settings Button**: Fixed Windows Settings not opening from quick actions menu with improved fallback methods
-
----
+- **💻 Admin Terminal**: Fixed admin Command Prompt and PowerShell opening in wrong directory, now correctly opens in C:\Windows\System32
