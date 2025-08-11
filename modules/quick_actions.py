@@ -141,3 +141,10 @@ class QuickActions:
             subprocess.Popen("charmap", shell=True)
         except Exception as e:
             self.show_error("Error", f"Failed to open Character Map: {e}")
+    
+    def open_settings(self):
+        """Open Windows Settings."""
+        try:
+            subprocess.Popen("ms-settings:", shell=True)
+        except Exception as e:
+            self.show_error("Error", f"Failed to open Settings: {e}")
