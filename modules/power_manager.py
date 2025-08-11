@@ -2,14 +2,23 @@
 
 import subprocess
 import ctypes
-from PyQt6.QtWidgets import QMessageBox, QDialog, QVBoxLayout, QHBoxLayout, QLabel, QPushButton
+import datetime
+from PyQt6.QtWidgets import (
+    QMessageBox,
+    QDialog,
+    QVBoxLayout,
+    QHBoxLayout,
+    QLabel,
+    QPushButton,
+    QWidget,
+)
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QFont
 
 
 class MinimalConfirmDialog(QDialog):
     """Minimal confirmation dialog with dark theme styling."""
-    
+
     def __init__(self, parent, title, message, confirm_text="Yes", cancel_text="No"):
         super().__init__(parent)
         self.result = False
@@ -17,8 +26,9 @@ class MinimalConfirmDialog(QDialog):
         self.setModal(True)
         self.setFixedSize(320, 140)
         self.setWindowFlags(Qt.WindowType.Dialog | Qt.WindowType.FramelessWindowHint)
-        
-        self.setStyleSheet("""
+
+        self.setStyleSheet(
+            """
             QDialog {
                 background-color: #0f172a;
                 border: 2px solid #334155;
@@ -63,45 +73,46 @@ class MinimalConfirmDialog(QDialog):
                 border-color: #00d4ff;
                 color: #00d4ff;
             }
-        """)
-        
+        """
+        )
+
         # Create layout
         layout = QVBoxLayout()
         layout.setSpacing(16)
         layout.setContentsMargins(20, 20, 20, 20)
-        
+
         # Message label
         msg_label = QLabel(message)
         msg_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         msg_label.setWordWrap(True)
         layout.addWidget(msg_label)
-        
+
         # Button layout
         btn_layout = QHBoxLayout()
         btn_layout.setSpacing(12)
-        
+
         # Cancel button
         cancel_btn = QPushButton(cancel_text)
         cancel_btn.setObjectName("cancelBtn")
         cancel_btn.clicked.connect(self.reject)
         btn_layout.addWidget(cancel_btn)
-        
+
         # Confirm button
         confirm_btn = QPushButton(confirm_text)
         confirm_btn.setObjectName("confirmBtn")
         confirm_btn.clicked.connect(self.accept)
         btn_layout.addWidget(confirm_btn)
-        
+
         layout.addLayout(btn_layout)
         self.setLayout(layout)
-        
+
         # Set focus to cancel button by default
         cancel_btn.setFocus()
-    
+
     def accept(self):
         self.result = True
         super().accept()
-    
+
     def reject(self):
         self.result = False
         super().reject()
@@ -109,14 +120,14 @@ class MinimalConfirmDialog(QDialog):
 
 class MinimalInfoDialog(QDialog):
     """Minimal info dialog with dark theme styling."""
-    
+
     def __init__(self, parent, title, message, dialog_type="info"):
         super().__init__(parent)
         self.setWindowTitle(title)
         self.setModal(True)
         self.setFixedSize(300, 120)
         self.setWindowFlags(Qt.WindowType.Dialog | Qt.WindowType.FramelessWindowHint)
-        
+
         # Color scheme based on dialog type
         if dialog_type == "error":
             border_color = "#ef4444"
@@ -130,8 +141,9 @@ class MinimalInfoDialog(QDialog):
             border_color = "#00d4ff"
             btn_color = "background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #00d4ff, stop:1 #0ea5e9);"
             btn_hover = "background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #38bdf8, stop:1 #00d4ff);"
-        
-        self.setStyleSheet(f"""
+
+        self.setStyleSheet(
+            f"""
             QDialog {{
                 background-color: #0f172a;
                 border: 2px solid {border_color};
@@ -159,32 +171,185 @@ class MinimalInfoDialog(QDialog):
             QPushButton:hover {{
                 {btn_hover}
             }}
-        """)
-        
+        """
+        )
+
         # Create layout
         layout = QVBoxLayout()
         layout.setSpacing(16)
         layout.setContentsMargins(20, 20, 20, 20)
-        
+
         # Message label
         msg_label = QLabel(message)
         msg_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         msg_label.setWordWrap(True)
         layout.addWidget(msg_label)
-        
+
         # OK button
         ok_btn = QPushButton("OK")
         ok_btn.clicked.connect(self.accept)
-        
+
         btn_layout = QHBoxLayout()
         btn_layout.addStretch()
         btn_layout.addWidget(ok_btn)
         btn_layout.addStretch()
-        
+
         layout.addLayout(btn_layout)
         self.setLayout(layout)
-        
+
         ok_btn.setFocus()
+
+
+class CountdownDialog(QDialog):
+    """Countdown dialog showing time remaining until shutdown."""
+
+    def __init__(self, parent, shutdown_time, time_text):
+        super().__init__(parent)
+        self.shutdown_time = shutdown_time
+        self.time_text = time_text
+        self.setWindowTitle("Shutdown Scheduled")
+        self.setModal(False)
+        self.setFixedSize(350, 160)
+        self.setWindowFlags(Qt.WindowType.Dialog | Qt.WindowType.WindowStaysOnTopHint)
+
+        self.setStyleSheet(
+            """
+            QDialog {
+                background-color: #0f172a;
+                border: 2px solid #f59e0b;
+                border-radius: 12px;
+            }
+            QLabel {
+                color: #e2e8f0;
+                font-family: 'Segoe UI';
+                background-color: transparent;
+                padding: 4px;
+            }
+            QLabel#titleLabel {
+                font-size: 12pt;
+                font-weight: 600;
+                color: #f59e0b;
+            }
+            QLabel#timeLabel {
+                font-size: 14pt;
+                font-weight: 700;
+                color: #ef4444;
+            }
+            QLabel#infoLabel {
+                font-size: 10pt;
+                color: #94a3b8;
+            }
+            QPushButton {
+                background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                    stop:0 #ef4444, stop:1 #dc2626);
+                border: 1px solid #dc2626;
+                border-radius: 8px;
+                padding: 8px 16px;
+                font-weight: 600;
+                font-size: 10pt;
+                color: #ffffff;
+                min-width: 80px;
+                min-height: 28px;
+            }
+            QPushButton:hover {
+                background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                    stop:0 #f87171, stop:1 #ef4444);
+            }
+        """
+        )
+
+        # Create layout
+        layout = QVBoxLayout()
+        layout.setSpacing(12)
+        layout.setContentsMargins(20, 20, 20, 20)
+
+        # Title
+        title_label = QLabel("⏰ Shutdown Scheduled")
+        title_label.setObjectName("titleLabel")
+        title_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        layout.addWidget(title_label)
+
+        # Countdown display
+        self.time_label = QLabel()
+        self.time_label.setObjectName("timeLabel")
+        self.time_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        layout.addWidget(self.time_label)
+
+        # Info text
+        info_label = QLabel(f"Scheduled for {self.time_text}")
+        info_label.setObjectName("infoLabel")
+        info_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        layout.addWidget(info_label)
+
+        # Cancel button
+        cancel_btn = QPushButton("Cancel Shutdown")
+        cancel_btn.clicked.connect(self.cancel_shutdown)
+
+        btn_layout = QHBoxLayout()
+        btn_layout.addStretch()
+        btn_layout.addWidget(cancel_btn)
+        btn_layout.addStretch()
+
+        layout.addLayout(btn_layout)
+        self.setLayout(layout)
+
+        # Setup timer for countdown updates
+        from PyQt6.QtCore import QTimer
+
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.update_countdown)
+        self.timer.start(1000)  # Update every second
+
+        # Initial countdown update
+        self.update_countdown()
+
+    def update_countdown(self):
+        """Update the countdown display."""
+        now = datetime.datetime.now()
+        remaining = self.shutdown_time - now
+
+        if remaining.total_seconds() <= 0:
+            self.time_label.setText("Shutting down now...")
+            self.timer.stop()
+            self.close()
+            return
+
+        # Format remaining time
+        total_seconds = int(remaining.total_seconds())
+        hours = total_seconds // 3600
+        minutes = (total_seconds % 3600) // 60
+        seconds = total_seconds % 60
+
+        if hours > 0:
+            time_str = f"{hours:02d}:{minutes:02d}:{seconds:02d}"
+        else:
+            time_str = f"{minutes:02d}:{seconds:02d}"
+
+        self.time_label.setText(time_str)
+
+    def cancel_shutdown(self):
+        """Cancel the scheduled shutdown."""
+        try:
+            subprocess.run(["shutdown", "/a"], check=True)
+            self.timer.stop()
+            self.close()
+
+            # Show cancellation confirmation
+            dialog = MinimalInfoDialog(
+                self.parent(), "Cancelled", "Scheduled shutdown cancelled.", "success"
+            )
+            dialog.exec()
+        except Exception as e:
+            dialog = MinimalInfoDialog(
+                self.parent(), "Error", f"Failed to cancel shutdown: {e}", "error"
+            )
+            dialog.exec()
+
+    def closeEvent(self, event):
+        """Clean up timer when dialog is closed."""
+        if hasattr(self, "timer"):
+            self.timer.stop()
+        super().closeEvent(event)
 
 
 class PowerManager:
@@ -198,7 +363,7 @@ class PowerManager:
         dialog = MinimalConfirmDialog(
             self.parent,
             f"Confirm {action_name}",
-            f"Are you sure you want to {action_name.lower()} your computer?"
+            f"Are you sure you want to {action_name.lower()} your computer?",
         )
         dialog.exec()
         return dialog.result
@@ -209,7 +374,9 @@ class PowerManager:
             try:
                 subprocess.run(["shutdown", "/s", "/f", "/t", "0"], check=True)
             except Exception as e:
-                dialog = MinimalInfoDialog(self.parent, "Error", f"Failed to shutdown: {e}", "error")
+                dialog = MinimalInfoDialog(
+                    self.parent, "Error", f"Failed to shutdown: {e}", "error"
+                )
                 dialog.exec()
 
     def restart_now(self):
@@ -218,7 +385,9 @@ class PowerManager:
             try:
                 subprocess.run(["shutdown", "/r", "/f", "/t", "0"], check=True)
             except Exception as e:
-                dialog = MinimalInfoDialog(self.parent, "Error", f"Failed to restart: {e}", "error")
+                dialog = MinimalInfoDialog(
+                    self.parent, "Error", f"Failed to restart: {e}", "error"
+                )
                 dialog.exec()
 
     def sleep_now(self):
@@ -228,7 +397,9 @@ class PowerManager:
                 ["rundll32.exe", "powrprof.dll,SetSuspendState", "0,1,0"], check=True
             )
         except Exception as e:
-            dialog = MinimalInfoDialog(self.parent, "Error", f"Failed to sleep: {e}", "error")
+            dialog = MinimalInfoDialog(
+                self.parent, "Error", f"Failed to sleep: {e}", "error"
+            )
             dialog.exec()
 
     def hibernate_now(self):
@@ -236,7 +407,9 @@ class PowerManager:
         try:
             subprocess.run(["shutdown", "/h"], check=True)
         except Exception as e:
-            dialog = MinimalInfoDialog(self.parent, "Error", f"Failed to hibernate: {e}", "error")
+            dialog = MinimalInfoDialog(
+                self.parent, "Error", f"Failed to hibernate: {e}", "error"
+            )
             dialog.exec()
 
     def lock_screen(self):
@@ -244,7 +417,9 @@ class PowerManager:
         try:
             ctypes.windll.user32.LockWorkStation()
         except Exception as e:
-            dialog = MinimalInfoDialog(self.parent, "Error", f"Failed to lock screen: {e}", "error")
+            dialog = MinimalInfoDialog(
+                self.parent, "Error", f"Failed to lock screen: {e}", "error"
+            )
             dialog.exec()
 
     def sign_out(self):
@@ -253,7 +428,9 @@ class PowerManager:
             try:
                 subprocess.run(["shutdown", "/l"], check=True)
             except Exception as e:
-                dialog = MinimalInfoDialog(self.parent, "Error", f"Failed to sign out: {e}", "error")
+                dialog = MinimalInfoDialog(
+                    self.parent, "Error", f"Failed to sign out: {e}", "error"
+                )
                 dialog.exec()
 
     def schedule_shutdown(self, time_value, time_unit):
@@ -270,20 +447,29 @@ class PowerManager:
             "Schedule Shutdown",
             f"Schedule shutdown in {time_text}?",
             "Schedule",
-            "Cancel"
+            "Cancel",
         )
         dialog.exec()
 
         if dialog.result:
             try:
                 subprocess.run(["shutdown", "/s", "/f", "/t", str(seconds)], check=True)
-                dialog = MinimalInfoDialog(
-                    self.parent,
-                    "Scheduled",
-                    f"Shutdown scheduled in {time_text}.\nUse 'Cancel Scheduled' to abort.",
-                    "success"
+
+                # Calculate shutdown time
+                shutdown_time = datetime.datetime.now() + datetime.timedelta(
+                    seconds=seconds
                 )
-                dialog.exec()
+
+                # Close existing countdown dialog if any
+                if self.countdown_dialog:
+                    self.countdown_dialog.close()
+
+                # Show countdown dialog
+                self.countdown_dialog = CountdownDialog(
+                    self.parent, shutdown_time, time_text
+                )
+                self.countdown_dialog.show()
+
             except Exception as e:
                 dialog = MinimalInfoDialog(
                     self.parent, "Error", f"Failed to schedule shutdown: {e}", "error"
@@ -294,6 +480,12 @@ class PowerManager:
         """Cancel any scheduled shutdown operation."""
         try:
             subprocess.run(["shutdown", "/a"], check=True)
+
+            # Close countdown dialog if open
+            if self.countdown_dialog:
+                self.countdown_dialog.close()
+                self.countdown_dialog = None
+
             dialog = MinimalInfoDialog(
                 self.parent, "Cancelled", "Scheduled shutdown cancelled.", "success"
             )
