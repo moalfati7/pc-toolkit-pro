@@ -1,19 +1,13 @@
-# 🚀 PC Toolkit Pro v2.4 - Bug Fix
+# 🚀 PC Toolkit Pro v2.5 - Performance & Features Update
 
-**Release Date:** Aug 5, 2025 | **Version:** 2.4
+**Version:** 2.5
 
 ---
 
-## 🐛 Bug Fixes
+## ✨ Major Enhancements
 
-### 🔧 **Critical Fixes**
-
-- **GPU Monitoring**: Fixed an issue where a command prompt window would briefly appear when fetching GPU information.
-
-## ✨ Enhancements
-
-### 🚀 **Quick Actions**
-
-- **Enhanced Quick Actions**: Added new admin terminal buttons (PowerShell Admin, CMD Admin), File Explorer, Network Connections, Volume Mixer, Notepad, and Snipping Tool
-- **Improved Layout**: Reorganized quick action buttons into a 3-column grid with better sizing and text visibility
-- **Code Quality**: Fixed indentation issues and improved button styling
+- **🚀 Asynchronous Loading**: Background system information loading for faster startup and responsive UI
+- **📊 System Information Tab**: Comprehensive hardware specs with real-time CPU, memory, disk, and GPU monitoring
+- **🧹 Enhanced Cleaner**: Improved temp directory cleaning with detailed progress tracking and smart detection
+- **🔔 Smart System Tray**: Background monitoring with live metrics display and quick access menu
+- **⚡ Better Performance**: Non-blocking UI with instant startup and smooth user experience
