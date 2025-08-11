@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![PC Toolkit Pro](https://img.shields.io/badge/PC%20Toolkit%20Pro-v2.4-blue?style=for-the-badge&logo=windows)
+![PC Toolkit Pro](https://img.shields.io/badge/PC%20Toolkit%20Pro-v2.5-blue?style=for-the-badge&logo=windows)
 ![Python](https://img.shields.io/badge/Python-3.11+-green?style=for-the-badge&logo=python)
 ![PyQt6](https://img.shields.io/badge/PyQt6-GUI-orange?style=for-the-badge&logo=qt)
 ![License](https://img.shields.io/badge/License-MIT-red?style=for-the-badge)
@@ -66,6 +66,12 @@ _Advanced cleaning tools with progress tracking and detailed logs_
 
 _Complete power control suite with scheduling and safety confirmations_
 
+### 📊 System Information & Tray
+
+![System Information](images/screenshot4.png)
+
+_Comprehensive system information display with real-time system tray monitoring_
+
 </div>
 
 ---
@@ -92,6 +98,29 @@ _Complete power control suite with scheduling and safety confirmations_
 | ⏱️ **System Uptime** | Precise uptime tracking            | Days, hours, minutes, seconds format    |
 | 🖥️ **System Info**   | OS version, architecture details   | Complete system specifications          |
 | 🔧 **Quick Tools**   | Direct access to Windows utilities | One-click system tool launching         |
+
+### 📊 **Comprehensive System Information**
+
+| Component             | Details                        | Information Provided                    |
+| --------------------- | ------------------------------ | --------------------------------------- |
+| ⏱️ **System Uptime**  | Precise runtime tracking       | Days, hours, minutes, seconds display   |
+| 🖥️ **CPU Details**    | Processor information & usage  | CPU name, cores, usage percentage       |
+| 💾 **Memory Info**    | RAM statistics and utilization | Total, used, available memory with %    |
+| 💿 **Storage Data**   | Disk space and usage metrics   | Total, used, free space with percentage |
+| 🎮 **GPU Monitor**    | Graphics card performance      | GPU name, usage, memory, temperature    |
+| 🖥️ **OS Information** | Operating system details       | Edition, version, build, architecture   |
+
+### 🔔 **Smart System Tray**
+
+| Feature                    | Functionality                    | Benefits                                 |
+| -------------------------- | -------------------------------- | ---------------------------------------- |
+| 📊 **Live Metrics**        | Real-time CPU, memory, GPU stats | Quick performance overview               |
+| 🎯 **Quick Actions**       | Instant access to core features  | One-click system operations              |
+| 🔧 **Tool Shortcuts**      | Direct Windows utility access    | Fast system tool launching               |
+| ⚡ **Power Controls**      | Immediate power management       | Quick shutdown, restart, sleep options   |
+| 🧹 **Cleaning Tools**      | Fast system cleaning access      | Instant temp file and cache cleanup      |
+| 🖥️ **Show/Hide Toggle**    | Minimize to tray functionality   | Clean desktop with background monitoring |
+| 🔔 **Smart Notifications** | System alerts and status updates | Stay informed of system changes          |
 
 ### ⚡ **Power Management Suite**
 
@@ -206,19 +235,35 @@ uv run python -m pyinstaller --noconfirm --windowed --onefile --icon "icon.ico" 
 3. **Quick Tools**: Access Windows utilities with one click
 4. **Performance Tracking**: Monitor system health over time
 
+### 📊 **System Information Tab**
+
+1. **Comprehensive Overview**: View detailed system specifications
+2. **Hardware Details**: Monitor CPU, memory, disk, and GPU information
+3. **Operating System**: Check OS edition, version, build, and architecture
+4. **Live Updates**: Real-time data refresh with asynchronous loading
+5. **Performance Metrics**: Track system uptime and resource utilization
+
 ### 🧹 **System Cleaner Tab**
 
-1. **Select Cleaning Type**: Choose from three cleaning options
-2. **Monitor Progress**: Watch real-time cleaning progress
-3. **Review Logs**: Check detailed cleaning reports
-4. **Verify Results**: See freed space and cleaned files
+1. **Select Cleaning Type**: Choose from comprehensive cleaning options
+2. **Monitor Progress**: Watch real-time cleaning progress with detailed logs
+3. **Review Results**: Check freed space and cleaned file counts
+4. **Multiple Locations**: Clean user temp, system temp, and prefetch files
 
 ### ⚡ **Power Management Tab**
 
 1. **Immediate Actions**: Use instant power controls
-2. **Schedule Operations**: Set timed shutdowns
+2. **Schedule Operations**: Set timed shutdowns with flexible timing
 3. **Safety Confirmations**: Confirm destructive actions
-4. **Cancel Scheduled**: Abort pending operations
+4. **Cancel Scheduled**: Abort pending operations anytime
+
+### 🔔 **System Tray Features**
+
+1. **Background Monitoring**: Continuous system performance tracking
+2. **Quick Access Menu**: Right-click for instant feature access
+3. **Live Status Display**: Real-time CPU, memory, and GPU metrics
+4. **Minimize to Tray**: Keep monitoring while maintaining clean desktop
+5. **Smart Notifications**: System alerts and performance updates
 
 ---
 
@@ -286,11 +331,11 @@ humanize>=4.12.3        # Human-readable file sizes and numbers
 
 <div align="center">
 
-![GitHub stars](https://img.shields.io/github/stars/yourusername/pc-toolkit-pro?style=social)
-![GitHub forks](https://img.shields.io/github/forks/yourusername/pc-toolkit-pro?style=social)
-![GitHub issues](https://img.shields.io/github/issues/yourusername/pc-toolkit-pro)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/yourusername/pc-toolkit-pro)
-![GitHub last commit](https://img.shields.io/github/last-commit/yourusername/pc-toolkit-pro)
+![GitHub stars](https://img.shields.io/github/stars/ssujitx/pc-toolkit-pro?style=social)
+![GitHub forks](https://img.shields.io/github/forks/ssujitx/pc-toolkit-pro?style=social)
+![GitHub issues](https://img.shields.io/github/issues/ssujitx/pc-toolkit-pro)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/ssujitx/pc-toolkit-pro)
+![GitHub last commit](https://img.shields.io/github/last-commit/ssujitx/pc-toolkit-pro)
 
 </div>
 
@@ -317,7 +362,6 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 - 🐛 **Issues**: [GitHub Issues](https://github.com/SSujitX/pc-toolkit-pro/issues)
 - 💬 **Discussions**: [GitHub Discussions](https://github.com/SSujitX/pc-toolkit-pro/discussions)
-- 📖 **Wiki**: [Project Wiki](https://github.com/SSujitX/pc-toolkit-pro/wiki)
 
 ### **Stay Updated**
 
