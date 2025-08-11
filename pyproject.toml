@@ -1,6 +1,6 @@
 [project]
 name = "pc-toolkit-pro"
-version = "2.4"
+version = "2.5"
 description = "A comprehensive PC toolkit for system monitoring, cleaning, power management, and quick actions"
 readme = "README.md"
 requires-python = ">=3.13"
