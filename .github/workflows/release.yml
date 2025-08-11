@@ -83,19 +83,26 @@ jobs:
               # Clean up extra whitespace
               $releaseNotes = $releaseNotes.Trim()
               
-              # Escape special characters for GitHub Actions
-              $releaseNotes = $releaseNotes -replace '%', '%25'
-              $releaseNotes = $releaseNotes -replace '\r', '%0D'
-              $releaseNotes = $releaseNotes -replace '\n', '%0A'
-              
-              echo "release_notes=$releaseNotes" >> $env:GITHUB_OUTPUT
+              # Use multiline output for GitHub Actions
+              $delimiter = "EOF_RELEASE_NOTES_$(Get-Random)"
+              echo "release_notes<<$delimiter" >> $env:GITHUB_OUTPUT
+              echo $releaseNotes >> $env:GITHUB_OUTPUT
+              echo $delimiter >> $env:GITHUB_OUTPUT
               echo "Successfully extracted release notes for version $version"
             } else {
-              echo "release_notes=## What's New%0A- Latest version of PC Toolkit Pro%0A- Enhanced system monitoring and management features%0A- Improved user interface and performance" >> $env:GITHUB_OUTPUT
+              $defaultNotes = "## What's New`n- Latest version of PC Toolkit Pro`n- Enhanced system monitoring and management features`n- Improved user interface and performance"
+              $delimiter = "EOF_RELEASE_NOTES_$(Get-Random)"
+              echo "release_notes<<$delimiter" >> $env:GITHUB_OUTPUT
+              echo $defaultNotes >> $env:GITHUB_OUTPUT
+              echo $delimiter >> $env:GITHUB_OUTPUT
               echo "Could not find specific version notes, using default"
             }
           } else {
-            echo "release_notes=## What's New%0A- Latest version of PC Toolkit Pro%0A- Enhanced system monitoring and management features%0A- Improved user interface and performance" >> $env:GITHUB_OUTPUT
+            $defaultNotes = "## What's New`n- Latest version of PC Toolkit Pro`n- Enhanced system monitoring and management features`n- Improved user interface and performance"
+            $delimiter = "EOF_RELEASE_NOTES_$(Get-Random)"
+            echo "release_notes<<$delimiter" >> $env:GITHUB_OUTPUT
+            echo $defaultNotes >> $env:GITHUB_OUTPUT
+            echo $delimiter >> $env:GITHUB_OUTPUT
             echo "RELEASE_NOTES.md not found, using default"
           }
         shell: pwsh
